@@ -27,7 +27,7 @@ a = np.roll(a, 1);       b = np.roll(b, -1)
 
 T = a + b
 np.fill_diagonal(T, 2)
-print(T)
+print(np.linalg.eig(T))
 
 
 #dphi                   = np.zeros(np.size(x))
