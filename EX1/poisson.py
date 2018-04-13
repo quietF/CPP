@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Grid division
-N  = 32
+N  = 128
 a  = 0.
 b  = 2.*np.pi
 L  = b - a
