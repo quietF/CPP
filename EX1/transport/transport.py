@@ -7,7 +7,7 @@ r_axis       = 0.001
 r_separatrix = 0.622
 
 # Grid division
-N            = 2**10
+N            = 2**5
 r            = np.linspace(r_axis, r_separatrix, N+1)
 h            = r[1] - r[0]
 
@@ -52,7 +52,6 @@ Sne        = Sne_dSnedr[0]
 # Define the A_ij Matrix that solves A_ij chi_j = - ST_i'
 X_j = np.zeros(N); X_j = dT_dr[1:]*dne_dr[1:] + ne[1:]*dT_dr[1:]/r[1:] + ne[1:]*d2T_dr2[1:]
 X_0 = dT_dr[0]*dne_dr[0] + ne[0]*dT_dr[0]/r[0] + ne[0]*d2T_dr2[0]
-print(X_0)
 Y_j = np.zeros(N); Y_j = ne[1:]*dT_dr[1:]/(2.*h)
 delta_ij   = np.zeros((N,N)); np.fill_diagonal(delta_ij, 1)
 delta_NN   = np.zeros((N,N)); delta_NN[N-1][N-1]   = 1
@@ -69,6 +68,7 @@ ST_i_prime[0]   = ST_i_prime[0] - ne[1]*dT_dr[1]*chi_0/(2.*h)
 ST_i_prime[N-1] = dchiN_dr
 
 A_ij_inv   = np.linalg.inv(A_ij)
+print(np.linalg.det(A_ij))
 chi_j      = np.dot(A_ij_inv, -ST_i_prime)
 
 #chi        = np.append((chi_0), chi_j)
